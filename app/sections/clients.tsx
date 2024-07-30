@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-var clients: {name: string, logo: string}[] = [
+let clients: {name: string, logo: string}[] = [
   {
     name: "Amdocs",
     logo: "/clients/amdocs.svg"
