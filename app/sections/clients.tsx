@@ -38,6 +38,10 @@ var clients: {name: string, logo: string}[] = [
     logo: "/clients/ge_healthcare.svg"
   },
   {
+    name: "Grab",
+    logo: "/clients/grab.svg"
+  },
+  {
     name: "Groupon",
     logo: "/clients/groupon.svg"
   },
