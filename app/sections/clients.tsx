@@ -139,7 +139,7 @@ export default function Clients() {
   return (
     <div className="m-5">
       <h1 className="text-3xl text-center text-orange-400 my-4">Our Clients</h1>
-      <div className="w-4xl grid bg-slate-400 lg:grid-cols-8 sm:grid-cols-6 grid-cols-3 lg:p-8 sm:p-6 p-3 rounded-lg">
+      <div className="w-4xl grid bg-slate-400 2xl:grid-cols-12 lg:grid-cols-8 sm:grid-cols-6 grid-cols-3 lg:p-8 sm:p-6 p-3 rounded-lg">
         {clients.map((client) => {return (
           <Image fill key={client.name} title={client.name} alt={client.name} src={client.logo} className="p-5 !relative object-contain"/>
         )})}
