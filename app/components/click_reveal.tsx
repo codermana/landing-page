@@ -23,17 +23,17 @@ export default class ClickReveal extends React.Component<ClickRevealProps, Click
 
   toggle() {
     // TODO: Fix the erratic movement!
-    this.setState({
-      hide: !this.state.hide
-    })
+    // this.setState({
+    //   hide: !this.state.hide
+    // })
   }
 
   render() {
-    var sectionClass = clsx("bg-slate-400 px-6 pt-9 pb-6 rounded-lg text-white", {hidden: this.state.hide});
+    let sectionClass = clsx("bg-slate-400 px-6 pt-9 pb-6 rounded-lg text-white", {hidden: this.state.hide});
 
     return (
       <div className="content-start max-w-xl mt-5 col-span-1">
-        <div className="inline my-4 py-2 px-4 rounded-lg text-white bg-orange-500 shadow-lg shadow-orange-500/50 hover:cursor-pointer hover:bg-orange-600 text-center w-28" onClick={this.toggle}>{this.props.title}</div>
+        <div className="inline my-4 py-2 px-4 rounded-lg text-white bg-orange-500 shadow-lg shadow-orange-500/50 hover:cursor-pointer hover:bg-orange-600 text-center" onClick={this.toggle}>{this.props.title}</div>
 
         <div className={sectionClass}>
           <h1 className="text-xl">{this.props.header}</h1>
