@@ -57,10 +57,10 @@ export default function Home() {
       <div className="m-5">
         <h1 className="text-xl text-center text-orange-400">Contact Us</h1>
         <div className="flex flex-col text-md text-center">
-          <Link href="mailto:namaste@codermana.com">
+          <Link href="mailto:namaste@codermana.com" className="hover:text-orange-300">
             namaste@codermana.com
           </Link>
-          <Link href="https://github.com/CoderMana">
+          <Link href="https://github.com/CoderMana" className="hover:text-orange-300">
             github.com/codermana
           </Link>
         </div>
