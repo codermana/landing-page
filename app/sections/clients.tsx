@@ -9,10 +9,10 @@ let clients: {name: string, logo: string}[] = [
     name: "Autodesk",
     logo: "/clients/autodesk.svg"
   },
-  {
-    name: "Bank of America",
-    logo: "/clients/boa.svg"
-  },
+  // {
+  //   name: "Bank of America",
+  //   logo: "/clients/boa.svg"
+  // },
   {
     name: "Brillio",
     logo: "/clients/brillio.svg"
