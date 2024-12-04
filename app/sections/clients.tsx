@@ -106,6 +106,10 @@ let clients: {name: string, logo: string}[] = [
     logo: "/clients/samsung.svg"
   },
   {
+    name: "Skan.ai",
+    logo: "/clients/skan.svg"
+  },
+  {
     name: "Siemens",
     logo: "/clients/siemens.svg"
   },
