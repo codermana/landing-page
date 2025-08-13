@@ -130,6 +130,10 @@ let clients: {name: string, logo: string}[] = [
     logo: "/clients/toshiba.svg"
   },
   {
+    name: "Trane",
+    logo: "/clients/trane.svg"
+  },
+  {
     name: "VMware",
     logo: "/clients/vmware.svg"
   },
@@ -149,7 +153,7 @@ export default function Clients() {
       <h1 className="text-3xl text-center text-orange-400 my-4">Our Clients</h1>
       <div className="w-4xl grid bg-slate-400 2xl:grid-cols-12 lg:grid-cols-8 sm:grid-cols-6 grid-cols-4 lg:p-8 sm:p-6 p-3 rounded-lg">
         {clients.map((client) => {return (
-          <Image fill key={client.name} title={client.name} alt={client.name} src={client.logo} className="p-5 !relative object-contain"/>
+          <Image fill key={client.name} title={client.name} alt={client.name} src={client.logo} className="p-5 !relative object-contain lg:grayscale hover:grayscale-0"/>
         )})}
       </div>
     </div>
