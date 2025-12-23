@@ -1,13 +1,20 @@
 import Image from "next/image";
 
-let clients: {name: string, logo: string}[] = [
+const heroClients = [
+  'Intel', 'Cisco', 'PayPal', 'JP Morgan Chase',
+  'Salesforce', 'Walmart Labs', 'Samsung', 'Qualcomm',
+  'Mastercard', 'VMware', 'Flipkart', 'GE Healthcare'
+];
+
+let clients: {name: string, logo: string, isWhite?: boolean}[] = [
   {
     name: "Amdocs",
     logo: "/clients/amdocs.svg"
   },
   {
     name: "Autodesk",
-    logo: "/clients/autodesk.svg"
+    logo: "/clients/autodesk.svg",
+    isWhite: true,
   },
   // {
   //   name: "Bank of America",
@@ -15,7 +22,8 @@ let clients: {name: string, logo: string}[] = [
   // },
   {
     name: "Brillio",
-    logo: "/clients/brillio.svg"
+    logo: "/clients/brillio.svg",
+    isWhite: true,
   },
   {
     name: "Cisco",
@@ -51,7 +59,8 @@ let clients: {name: string, logo: string}[] = [
   },
   {
     name: "Intel",
-    logo: "/clients/intel.svg"
+    logo: "/clients/intel.svg",
+    isWhite: true
   },
   {
     name: "JP Morgan Chase",
@@ -67,7 +76,8 @@ let clients: {name: string, logo: string}[] = [
   },
   {
     name: "Natwest",
-    logo: "/clients/natwest.svg"
+    logo: "/clients/natwest.svg",
+    isWhite: true
   },
   {
     name: "Nutanix",
@@ -83,7 +93,8 @@ let clients: {name: string, logo: string}[] = [
   },
   {
     name: "Proofpoint",
-    logo: "/clients/proofpoint.svg"
+    logo: "/clients/proofpoint.svg",
+    isWhite: true
   },
   {
     name: "Qualcomm",
@@ -115,7 +126,8 @@ let clients: {name: string, logo: string}[] = [
   },
   {
     name: "Synamedia",
-    logo: "/clients/synamedia.svg"
+    logo: "/clients/synamedia.svg",
+    isWhite: true
   },
   {
     name: "Synchrony",
@@ -123,7 +135,8 @@ let clients: {name: string, logo: string}[] = [
   },
   {
     name: "TCS",
-    logo: "/clients/tcs.svg"
+    logo: "/clients/tcs.svg",
+    isWhite: true
   },
   {
     name: "Toshiba",
@@ -149,13 +162,27 @@ let clients: {name: string, logo: string}[] = [
 
 export default function Clients() {
   return (
-    <div className="m-5">
-      <h1 className="text-3xl text-center text-orange-400 my-4">Our Clients</h1>
-      <div className="w-4xl grid bg-slate-400 2xl:grid-cols-12 lg:grid-cols-8 sm:grid-cols-6 grid-cols-4 lg:p-8 sm:p-6 p-3 rounded-lg">
-        {clients.map((client) => {return (
-          <Image fill key={client.name} title={client.name} alt={client.name} src={client.logo} className="p-5 !relative object-contain lg:grayscale hover:grayscale-0"/>
-        )})}
+    <section id="clients" className="py-20 px-6 bg-orange-500/5">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+          Trusted by Industry Leaders
+        </h2>
+        <p className="text-xl text-gray-400 text-center mb-12">
+          We&apos;ve partnered with some of the world&apos;s most respected technology organizations
+        </p>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-8">
+          {heroClients.map((client, i) => (
+            <div key={i} className="text-center text-gray-400 hover:text-orange-500 transition-colors font-semibold">
+                {client}
+            </div>
+          ))}
+        </div>
+
+        <p className="text-center text-gray-500 text-lg">
+          ...and 20+ more enterprises across finance, healthcare, technology, and manufacturing
+        </p>
       </div>
-    </div>
-  )
+    </section>
+  );
 }
