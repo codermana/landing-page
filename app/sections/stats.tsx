@@ -4,7 +4,7 @@ let stats: {number: string, label: string}[] = [
     label: "Years Engineering Excellence",
   },
   {
-    number: "1200+",
+    number: "3000+",
     label: "Engineers Trained",
   },
   {
