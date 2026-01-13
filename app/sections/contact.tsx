@@ -8,12 +8,12 @@ export default function Contact() {
             <p className="text-xl mb-8 opacity-90">Let&apos;s discuss how we can help your team build better, faster, and more reliably.</p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <a href="mailto:namaste@codermana.com" className="smooth-transition text-lg font-semibold hover:text-cyan-200">
+                <Link href="mailto:namaste@codermana.com" className="smooth-transition text-lg font-semibold hover:underline">
                     namaste@codermana.com
-                </a>
-                <a href="https://github.com/CoderMana" target="_blank" className="smooth-transition text-lg font-semibold hover:text-cyan-200">
+                </Link>
+                <Link href="https://github.com/CoderMana" target="_blank" className="smooth-transition text-lg font-semibold hover:underline">
                     github.com/CoderMana →
-                </a>
+                </Link>
             </div>
         </div>
     </section>
