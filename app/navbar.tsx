@@ -49,14 +49,14 @@ export default function NavBar() {
         <li><Link href="#contact" className="hover:text-orange-500 transition">Contact</Link></li>
       </ul>
 
-      {/* <button
+      <button
         onClick={toggleTheme}
         className="rounded-lg px-3 py-2 text-sm font-medium
               bg-gray-100 hover:bg-gray-200
               dark:bg-white/10 dark:hover:bg-white/20
               transition">
         🌗
-      </button> */}
+      </button>
     </div>
   </nav>;
 }

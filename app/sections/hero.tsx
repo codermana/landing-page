@@ -5,7 +5,7 @@ export default function Hero() {
           dark:bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.1),transparent_50%)]">
 
       <div className="max-w-6xl">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-orange-500 bg-clip-text text-transparent">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">
           Engineering Excellence at Enterprise Scale
         </h1>
 
