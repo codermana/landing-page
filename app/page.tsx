@@ -4,6 +4,7 @@ import Stats from "./sections/stats";
 import Services from "./sections/services";
 import Clients from "./sections/clients";
 import Contact from "./sections/contact";
+import TheHourCTA from "./sections/thehourcta";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero/>
       <Stats/>
       <Services/>
+      <TheHourCTA/>
       <Clients/>
       <Contact/>
       <Footer/>
