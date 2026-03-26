@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 let stats: {number: string, label: string}[] = [
   {
-    number: "12+",
+    number: "14+",
     label: "Years of Engineering Excellence",
   },
   {

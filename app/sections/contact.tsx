@@ -55,15 +55,15 @@ export default function Contact() {
                                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
                             </div>
-                            <pre className="text-sm font-mono text-orange-600 dark:text-orange-400 overflow-x-auto">
-                                <code>{`const partnerWithUs = async () => {
-  const needs = ['Scale', 'Train', 'Architect'];
-  const solution = await CoderMana.partner({
-    vision: 'Excellence',
-    team: 'Your Engineering Force'
-  });
-  return solution.velocity;
-};`}</code>
+                            <pre className="text-sm font-mono text-orange-600 dark:text-orange-400 whitespace-pre-wrap break-words w-full max-w-full">
+                                <code>{`func partnerWithUs() Velocity {
+  needs := []string{"Scale", "Train", "Architect"}
+  solution := CoderMana.Partner(Config{
+    Vision: "Excellence",
+    Team:   "Your Engineering Force",
+  })
+  return solution.Velocity
+}`}</code>
                             </pre>
                         </div>
                     </div>
