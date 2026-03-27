@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import { useIsMobile, fadeUp, slideIn } from "../hooks/useReducedMotion";
 
 const products = [
   {
@@ -23,36 +24,33 @@ const products = [
 ];
 
 export default function Products() {
+  const mobile = useIsMobile();
+
   return (
     <section id="products" className="py-32 px-[5%] bg-white dark:bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(mobile)}
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-black mb-6 tracking-tight text-gray-900 dark:text-white">
             Our Products
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(mobile, 0.1)}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
             className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
             Tools and platforms we&apos;ve built to solve real-world engineering and business challenges.
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {products.map((product, index) => (
             <motion.div
               key={product.title}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              {...slideIn(mobile, index % 2 === 0 ? "left" : "right", index * 0.1)}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative p-10 md:p-16 rounded-[2.5rem] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:border-orange-500/50 transition-all duration-500 overflow-hidden">
+              className="group relative p-6 sm:p-10 md:p-16 rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:border-orange-500/50 transition-all duration-500 overflow-hidden">
               
               {/* Decorative background element */}
               <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl group-hover:bg-orange-500/10 transition-colors duration-500"></div>

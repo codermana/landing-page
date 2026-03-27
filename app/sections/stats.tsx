@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useIsMobile, fadeUp } from "../hooks/useReducedMotion";
 
 let stats: {number: string, label: string}[] = [
   {
@@ -22,6 +23,8 @@ let stats: {number: string, label: string}[] = [
 ];
 
 export default function Stats() {
+  const mobile = useIsMobile();
+
   return (
     <section
       className="smooth-transition py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0a0a0a] border-y border-gray-100 dark:border-white/5">
@@ -30,10 +33,8 @@ export default function Stats() {
             {stats.map((stat, index) => {return (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                {...fadeUp(mobile, mobile ? 0 : index * 0.1)}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center p-10 rounded-2xl border
                       bg-gray-50/50 border-gray-100
                       hover:bg-white hover:shadow-xl hover:shadow-orange-500/10 hover:-translate-y-1

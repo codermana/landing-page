@@ -2,15 +2,16 @@
 
 import { motion } from "framer-motion";
 import { Calendar, Clock, Globe } from "lucide-react";
+import { useIsMobile, fadeUp, scaleIn } from "../hooks/useReducedMotion";
 
 export default function TheHourCTA() {
+  const mobile = useIsMobile();
+
   return (
     <section className="mb-0">
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        {...scaleIn(mobile)}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
         className="bg-gradient-to-br from-yellow-500 to-orange-500 p-12 md:p-16 text-center relative overflow-hidden">
         
         {/* Subtle pattern overlay */}
@@ -18,27 +19,22 @@ export default function TheHourCTA() {
 
         <div className="relative z-10">
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(mobile)}
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-black mb-3 drop-shadow-lg">
             THE CODERMANA HOUR
           </motion.h2>
           
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(mobile, 0.1)}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
             className="text-xl md:text-2xl mb-5 opacity-95">
             Live Tech Sessions Every Other Thursday
           </motion.p>
 
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(mobile, 0.2)}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
             className="flex flex-wrap justify-center gap-8 mb-8 text-white/90">
             <div className="flex items-center gap-2 text-lg">
               <Calendar className="w-6 h-6" />
@@ -55,10 +51,8 @@ export default function TheHourCTA() {
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(mobile, 0.3)}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
             className="flex flex-wrap justify-center gap-3 mb-8">
             {["Distributed Systems", "Security", "LLMs", "Compilers", "Open Source"].map((tag) => (
               <span key={tag} className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm">

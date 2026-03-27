@@ -24,3 +24,21 @@
     @apply bg-gray-200 dark:bg-white/10 rounded-full hover:bg-orange-500/50 transition-colors;
   }
 }
+
+/* Smoother GPU compositing for animated sections on mobile */
+@media (max-width: 767px) {
+  section, nav {
+    will-change: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* Respect user motion preferences at the CSS level */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

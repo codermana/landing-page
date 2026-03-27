@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useIsMobile, fadeUp } from "../hooks/useReducedMotion";
 
 const clients = [
   { name: "Amdocs", logo: "/clients/amdocs.svg" },
@@ -42,21 +43,20 @@ const clients = [
 ];
 
 export default function Clients() {
+  const mobile = useIsMobile();
+
   return (
     <section id="clients" className="py-32 px-6 overflow-hidden bg-gray-50 dark:bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto mb-20 text-center">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          {...fadeUp(mobile)}
           viewport={{ once: true }}
           className="text-4xl md:text-6xl font-black mb-6 tracking-tight text-gray-900 dark:text-white">
           Trusted by Industry Leaders
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          {...fadeUp(mobile, 0.1)}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
           className="text-xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
           We&apos;ve partnered with some of the world&apos;s most respected technology organizations to deliver engineering excellence.
         </motion.p>

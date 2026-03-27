@@ -2,6 +2,7 @@
 
 import { GraduationCap, Layout, Rocket, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useIsMobile, fadeUp } from "../hooks/useReducedMotion";
 
 const services = [
   {
@@ -40,21 +41,20 @@ const services = [
 ];
 
 export default function Services() {
+  const mobile = useIsMobile();
+
   return (
     <section id="services" className="px-[5%] py-32 max-w-7xl mx-auto">
       <div className="text-center mb-20">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          {...fadeUp(mobile)}
           viewport={{ once: true }}
           className="font-black mb-6 text-4xl md:text-6xl tracking-tight">
           How We Can Help You Scale
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          {...fadeUp(mobile, 0.1)}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
           className="text-gray-500 dark:text-gray-400 text-xl max-w-2xl mx-auto">
           Craftsmanship and applied engineering excellence in every engagement.
         </motion.p>
@@ -64,10 +64,8 @@ export default function Services() {
         {services.map((service, index) => (
           <motion.div
             key={service.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...fadeUp(mobile, mobile ? 0 : index * 0.1)}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
             className="p-10 rounded-3xl bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10
                     hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/5 hover:-translate-y-2 transition-all duration-300">
             <div className="w-16 h-16 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-8">

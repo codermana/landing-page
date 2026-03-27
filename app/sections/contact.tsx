@@ -17,31 +17,31 @@ const GithubIcon = ({ className }: { className?: string }) => (
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-32 px-[5%] bg-white dark:bg-[#0a0a0a]">
+    <section id="contact" className="py-16 sm:py-24 md:py-32 px-[5%] bg-white dark:bg-[#0a0a0a]">
         <div className="max-w-5xl mx-auto">
-            <div className="bg-gray-50 dark:bg-white/5 rounded-[3rem] p-12 md:p-20 border border-gray-100 dark:border-white/10 relative overflow-hidden">
-                <div className="relative z-10 grid md:grid-cols-2 gap-16 items-center">
+            <div className="bg-gray-50 dark:bg-white/5 rounded-2xl sm:rounded-[2rem] md:rounded-[3rem] p-6 sm:p-10 md:p-20 border border-gray-100 dark:border-white/10 relative overflow-hidden">
+                <div className="relative z-10 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
                     <div>
-                        <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter text-gray-900 dark:text-white">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black mb-4 sm:mb-6 md:mb-8 tracking-tighter text-gray-900 dark:text-white">
                             Ready to Scale Your Engineering?
                         </h2>
-                        <p className="text-xl text-gray-500 dark:text-gray-400 mb-10 leading-relaxed">
+                        <p className="text-base sm:text-lg md:text-xl text-gray-500 dark:text-gray-400 mb-6 sm:mb-8 md:mb-10 leading-relaxed">
                             Let&apos;s discuss how we can help your team build better, faster, and more reliably. Whether you need a team upgrade, architectural guidance, or custom training.
                         </p>
 
                         <div className="flex flex-col gap-4">
                             <Link 
                                 href="mailto:namaste@codermana.com" 
-                                className="flex items-center gap-4 text-2xl font-bold text-orange-600 hover:gap-6 transition-all duration-300">
-                                <Mail className="w-8 h-8" />
-                                <span>namaste@codermana.com</span>
-                                <ArrowRight className="w-6 h-6" />
+                                className="flex items-center gap-3 sm:gap-4 text-base sm:text-lg md:text-2xl font-bold text-orange-600 hover:gap-5 sm:hover:gap-6 transition-all duration-300">
+                                <Mail className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 flex-shrink-0" />
+                                <span className="break-all sm:break-normal">namaste@codermana.com</span>
+                                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 flex-shrink-0" />
                             </Link>
                             <Link 
                                 href="https://github.com/CoderMana" 
                                 target="_blank"
-                                className="flex items-center gap-4 text-xl font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors">
-                                <GithubIcon className="w-6 h-6" />
+                                className="flex items-center gap-3 sm:gap-4 text-base sm:text-lg md:text-xl font-semibold text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors">
+                                <GithubIcon className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
                                 <span>Follow our Open Source journey</span>
                             </Link>
                         </div>

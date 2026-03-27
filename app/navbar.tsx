@@ -4,12 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
-
 import { useEffect, useState } from "react";
+import { useIsMobile, fadeUp } from "./hooks/useReducedMotion";
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const mobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,8 +38,9 @@ export default function NavBar() {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={mobile ? { opacity: 0 } : { y: -100 }}
+      animate={mobile ? { opacity: 1 } : { y: 0 }}
+      transition={{ duration: mobile ? 0.3 : 0.5 }}
       className={`fixed top-0 w-full z-[1000] transition-all duration-500 px-[5%] py-4 flex items-center justify-between
           ${scrolled ? 'bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 py-3' : 'bg-transparent'}`}>
       

@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useIsMobile, fadeUp } from "../hooks/useReducedMotion";
 
 export default function Hero() {
+  const mobile = useIsMobile();
+
   return (
     <section className="min-h-screen flex items-center justify-center px-[5%] text-center
           bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.08),transparent_50%)]
@@ -10,17 +13,13 @@ export default function Hero() {
 
       <div className="max-w-6xl">
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          {...fadeUp(mobile)}
           className="text-5xl md:text-8xl font-black mb-6 bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent leading-tight tracking-tight">
           Building High-Performance Engineering Teams
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          {...fadeUp(mobile, 0.2)}
           className="text-[clamp(1.1rem,2vw,1.5rem)]
                 text-gray-600 dark:text-gray-400
                 max-w-4xl mx-auto mb-12 leading-relaxed">
@@ -28,9 +27,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          {...fadeUp(mobile, 0.4)}
           className="flex flex-wrap gap-6 justify-center">
           <a
             href="#contact"
