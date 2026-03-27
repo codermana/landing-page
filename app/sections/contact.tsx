@@ -143,7 +143,7 @@ export default function Contact() {
                         <div className="flex flex-col gap-4">
                             <Link 
                                 href="mailto:namaste@codermana.com" 
-                                className="flex items-center gap-3 sm:gap-4 text-base sm:text-lg md:text-2xl font-bold text-orange-600 hover:gap-5 sm:hover:gap-6 transition-all duration-300">
+                                className="flex items-center gap-3 sm:gap-4 text-base sm:text-lg md:text-2xl font-bold text-orange-500 hover:gap-5 sm:hover:gap-6 transition-all duration-300">
                                 <Mail className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 flex-shrink-0" />
                                 <span className="break-all sm:break-normal">namaste@codermana.com</span>
                                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 flex-shrink-0" />
@@ -169,7 +169,7 @@ export default function Contact() {
                                 </div>
                                 <span className="text-xs font-mono text-gray-400 dark:text-gray-500 uppercase tracking-widest">{snippet.lang}</span>
                             </div>
-                            <pre className="text-sm font-mono text-orange-600 dark:text-orange-400 whitespace-pre-wrap break-words w-full max-w-full">
+                            <pre className="text-sm font-mono text-orange-500 dark:text-orange-400 whitespace-pre-wrap break-words w-full max-w-full">
                                 <code>{snippet.code}</code>
                             </pre>
                         </div>

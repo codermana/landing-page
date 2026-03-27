@@ -66,7 +66,7 @@ export default function Products() {
                   />
                 </div>
 
-                <h3 className="text-3xl font-black mb-4 tracking-tight group-hover:text-orange-600 transition-colors">
+                <h3 className="text-3xl font-black mb-4 tracking-tight group-hover:text-orange-500 transition-colors">
                   {product.title}
                 </h3>
 
@@ -86,7 +86,7 @@ export default function Products() {
                   href={product.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-lg font-bold text-orange-600 hover:gap-4 transition-all duration-300">
+                  className="inline-flex items-center gap-2 text-lg font-bold text-orange-500 hover:gap-4 transition-all duration-300">
                   Visit {product.title}
                   <ExternalLink className="w-5 h-5" />
                 </Link>

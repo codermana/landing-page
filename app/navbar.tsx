@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useIsMobile, fadeUp } from "./hooks/useReducedMotion";
+import { useIsMobile } from "./hooks/useReducedMotion";
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
@@ -38,13 +38,13 @@ export default function NavBar() {
 
   return (
     <motion.nav
-      initial={mobile ? { opacity: 0 } : { y: -100 }}
-      animate={mobile ? { opacity: 1 } : { y: 0 }}
-      transition={{ duration: mobile ? 0.3 : 0.5 }}
+      initial={{ y: -48, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: mobile ? 0.3 : 0.45, ease: "easeOut" }}
       className={`fixed top-0 w-full z-[1000] transition-all duration-500 px-[5%] py-4 flex items-center justify-between
           ${scrolled ? 'bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 py-3' : 'bg-transparent'}`}>
-      
-      <Link href="/" className="flex items-center gap-3 text-2xl font-black tracking-tighter">
+
+      <Link href="/" className="flex items-center gap-3 text-2xl font-semibold">
         <Image
           src="/codermana.svg"
           alt="CoderMana Logo"
@@ -70,10 +70,10 @@ export default function NavBar() {
             className="rounded-xl p-2.5 text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/5 transition-all">
             {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
           </button>
-          
+
           <Link
             href="#contact"
-            className="hidden sm:block px-6 py-2.5 rounded-xl bg-orange-600 text-white text-sm font-bold hover:bg-orange-700 hover:scale-105 active:scale-95 transition-all">
+            className="hidden sm:block px-6 py-2.5 rounded-xl bg-orange-500 text-white text-sm font-bold hover:bg-orange-600 hover:scale-105 active:scale-95 transition-all">
             Get Started
           </Link>
         </div>
