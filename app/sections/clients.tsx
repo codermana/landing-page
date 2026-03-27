@@ -15,11 +15,11 @@ type LogoTheme = "light" | "dark" | "colorful";
 const clients: { name: string; logo: string; theme: LogoTheme }[] = [
   { name: "Amdocs", logo: "/clients/amdocs.svg", theme: "colorful" },
   { name: "Autodesk", logo: "/clients/autodesk.svg", theme: "light" },
-  { name: "Brillio", logo: "/clients/brillio.svg", theme: "light" },
+  { name: "Brillio", logo: "/clients/brillio.svg", theme: "colorful" },
   { name: "Cisco", logo: "/clients/cisco.svg", theme: "colorful" },
   { name: "Compucom", logo: "/clients/compucom.svg", theme: "colorful" },
   { name: "Ericsson", logo: "/clients/ericsson.svg", theme: "dark" },
-  { name: "Flipkart", logo: "/clients/flipkart.svg", theme: "light" },
+  { name: "Flipkart", logo: "/clients/flipkart.svg", theme: "colorful" },
   { name: "GE Healthcare", logo: "/clients/ge_healthcare.svg", theme: "colorful" },
   { name: "Grab", logo: "/clients/grab.svg", theme: "colorful" },
   { name: "Groupon", logo: "/clients/groupon.svg", theme: "dark" },
@@ -28,13 +28,13 @@ const clients: { name: string; logo: string; theme: LogoTheme }[] = [
   { name: "JP Morgan Chase", logo: "/clients/jpmc.svg", theme: "dark" },
   { name: "Mastercard", logo: "/clients/mastercard.svg", theme: "colorful" },
   { name: "Medtronic", logo: "/clients/medtronic.svg", theme: "dark" },
-  { name: "Natwest", logo: "/clients/natwest.svg", theme: "light" },
+  { name: "Natwest", logo: "/clients/natwest.svg", theme: "colorful" },
   { name: "Nutanix", logo: "/clients/nutanix.svg", theme: "dark" },
-  { name: "Oshi", logo: "/clients/oshi.svg", theme: "dark" },
+  { name: "Oshi", logo: "/clients/oshi.svg", theme: "colorful" },
   { name: "Paypal", logo: "/clients/paypal.svg", theme: "colorful" },
   { name: "Proofpoint", logo: "/clients/proofpoint.svg", theme: "light" },
   { name: "Qualcomm", logo: "/clients/qualcomm.svg", theme: "dark" },
-  { name: "Renault Nissan Mitsubishi", logo: "/clients/renault-nissan-mitsubishi.svg", theme: "dark" },
+  { name: "Renault Nissan Mitsubishi", logo: "/clients/renault-nissan-mitsubishi.svg", theme: "colorful" },
   { name: "Roll", logo: "/clients/roll.svg", theme: "colorful" },
   { name: "Salesforce", logo: "/clients/salesforce.svg", theme: "colorful" },
   { name: "Samsung", logo: "/clients/samsung.svg", theme: "dark" },
@@ -52,22 +52,20 @@ const clients: { name: string; logo: string; theme: LogoTheme }[] = [
 
 /** Renders the two marquee strips (primary + seamless clone) */
 function MarqueeStrip({ colored = false }: { colored?: boolean }) {
-  const logoClass = (theme: LogoTheme) => {
+  const logoClass = (client: typeof clients[0]) => {
     if (colored) {
-      // Spotlight layer — show original brand colors with theme-aware fixes
-      switch (theme) {
-        case "light":
-          // White logos: darken on light bg so visible, show original on dark
-          return 'brightness-0 dark:brightness-100';
-        case "dark":
-          // Dark/black logos: show original on light, brighten on dark bg
-          return 'dark:brightness-0 dark:invert';
-        case "colorful":
-          // Colorful logos: visible on both backgrounds as-is
-          return '';
+      if (client.theme == "light") {
+        // White/light logos: darken on light bg, show original on dark
+        return 'brightness-0 dark:brightness-100';
       }
+      if (client.theme == "dark") {
+        // Purely dark logos (no brand colors): show as white in dark mode
+        return 'dark:brightness-0 dark:invert';
+      }
+      // Colorful logos: show original colors on both themes
+      return '';
     }
-    // Grayscale base layer — monochrome on both themes
+    // Grayscale base layer
     return 'brightness-0 dark:invert';
   };
 
@@ -80,7 +78,7 @@ function MarqueeStrip({ colored = false }: { colored?: boolean }) {
               src={client.logo}
               alt={client.name}
               fill
-              className={`object-contain ${logoClass(client.theme)}`}
+              className={`object-contain ${logoClass(client)}`}
             />
           </div>
         ))}
@@ -93,7 +91,7 @@ function MarqueeStrip({ colored = false }: { colored?: boolean }) {
               src={client.logo}
               alt={client.name}
               fill
-              className={`object-contain ${logoClass(client.theme)}`}
+              className={`object-contain ${logoClass(client)}`}
             />
           </div>
         ))}
@@ -133,11 +131,11 @@ export default function Clients() {
           <MarqueeStrip />
         </div>
 
-        {/* Light backdrop behind spotlight in dark mode for logo visibility */}
+        {/* Light strip behind spotlight in dark mode for logo visibility */}
         <div
-          className="absolute inset-0 pointer-events-none hidden dark:block"
+          className="absolute inset-0 pointer-events-none hidden dark:block rounded-2xl"
           style={{
-            background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 45%)',
+            background: 'linear-gradient(to right, transparent 15%, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.1) 70%, transparent 85%)',
           }}
         />
 
