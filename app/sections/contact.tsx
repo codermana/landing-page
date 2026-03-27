@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Mail, ArrowRight } from "lucide-react";
 
@@ -15,7 +18,115 @@ const GithubIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const SNIPPETS = [
+  {
+    lang: "TypeScript",
+    code: `function partnerWithUs(): Velocity {
+  const needs = ["Scale", "Train", "Architect"];
+  const solution = CoderMana.partner({
+    vision: "Excellence",
+    team: "Your Engineering Force",
+  });
+  return solution.velocity;
+}`
+  },
+  {
+    lang: "Go",
+    code: `func partnerWithUs() Velocity {
+  needs := []string{"Scale", "Train", "Architect"}
+  solution := CoderMana.Partner(Config{
+    Vision: "Excellence",
+    Team:   "Your Engineering Force",
+  })
+  return solution.Velocity
+}`
+  },
+  {
+    lang: "Rust",
+    code: `fn partner_with_us() -> Velocity {
+    let needs = vec!["Scale", "Train", "Architect"];
+    let solution = CoderMana::partner(Config {
+        vision: "Excellence".to_string(),
+        team: "Your Engineering Force".to_string(),
+    });
+    solution.velocity
+}`
+  },
+  {
+    lang: "Elixir",
+    code: `def partner_with_us do
+  needs = ["Scale", "Train", "Architect"]
+  solution = CoderMana.partner(%{
+    vision: "Excellence",
+    team: "Your Engineering Force"
+  })
+  solution.velocity
+end`
+  },
+  {
+    lang: "Ruby",
+    code: `def partner_with_us
+  needs = ["Scale", "Train", "Architect"]
+  solution = CoderMana.partner(
+    vision: "Excellence",
+    team: "Your Engineering Force"
+  )
+  solution.velocity
+end`
+  },
+  {
+    lang: "Python",
+    code: `def partner_with_us() -> Velocity:
+    needs = ["Scale", "Train", "Architect"]
+    solution = codermana.partner(
+        vision="Excellence",
+        team="Your Engineering Force"
+    )
+    return solution.velocity`
+  },
+  {
+    lang: "Clojure",
+    code: `(defn partner-with-us []
+  (let [needs ["Scale" "Train" "Architect"]
+        solution (codermana/partner 
+                   {:vision "Excellence"
+                    :team "Your Engineering Force"})]
+    (:velocity solution)))`
+  },
+  {
+    lang: "Elm",
+    code: `partnerWithUs : Velocity
+partnerWithUs =
+    let
+        needs = [ "Scale", "Train", "Architect" ]
+        solution = CoderMana.partner
+            { vision = "Excellence"
+            , team = "Your Engineering Force"
+            }
+    in
+    solution.velocity`
+  },
+  {
+    lang: "Swift",
+    code: `func partnerWithUs() -> Velocity {
+    let needs = ["Scale", "Train", "Architect"]
+    let solution = CoderMana.partner(Config(
+        vision: "Excellence",
+        team: "Your Engineering Force"
+    ))
+    return solution.velocity
+}`
+  }
+];
+
 export default function Contact() {
+  const [snippet, setSnippet] = useState(SNIPPETS[1]); // Default to Go
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * SNIPPETS.length);
+    setSnippet(SNIPPETS[randomIndex]);
+  }, []);
+
   return (
     <section id="contact" className="py-16 sm:py-24 md:py-32 px-[5%] bg-white dark:bg-[#0a0a0a]">
         <div className="max-w-5xl mx-auto">
@@ -50,20 +161,16 @@ export default function Contact() {
                     <div className="hidden md:block relative">
                         <div className="aspect-square bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-full blur-3xl absolute inset-0"></div>
                         <div className="relative bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 p-8 rounded-3xl shadow-2xl">
-                            <div className="flex gap-2 mb-6">
-                                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                            <div className="flex justify-between items-center mb-6">
+                                <div className="flex gap-2">
+                                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <span className="text-xs font-mono text-gray-400 dark:text-gray-500 uppercase tracking-widest">{snippet.lang}</span>
                             </div>
                             <pre className="text-sm font-mono text-orange-600 dark:text-orange-400 whitespace-pre-wrap break-words w-full max-w-full">
-                                <code>{`func partnerWithUs() Velocity {
-  needs := []string{"Scale", "Train", "Architect"}
-  solution := CoderMana.Partner(Config{
-    Vision: "Excellence",
-    Team:   "Your Engineering Force",
-  })
-  return solution.Velocity
-}`}</code>
+                                <code>{snippet.code}</code>
                             </pre>
                         </div>
                     </div>

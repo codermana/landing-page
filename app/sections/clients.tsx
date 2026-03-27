@@ -42,6 +42,53 @@ const clients = [
   { name: "Western Digital", logo: "/clients/western_digital.svg" },
 ];
 
+/** Renders the two marquee strips (primary + seamless clone) */
+function MarqueeStrip({ colored = false }: { colored?: boolean }) {
+  const logoClass = (isWhite?: boolean) => {
+    if (colored) {
+      // Full color — but isWhite logos still need brightness-0 on light bg
+      return isWhite ? 'brightness-0 dark:brightness-100' : '';
+    }
+    // Grayscale base layer
+    return 'brightness-0 dark:invert';
+  };
+
+  return (
+    <>
+      <div className="py-12 animate-marquee whitespace-nowrap flex items-center">
+        {[...clients, ...clients].map((client, i) => (
+          <div key={i} className="mx-12 w-32 md:w-48 h-20 relative flex items-center justify-center flex-shrink-0">
+            <Image
+              src={client.logo}
+              alt={client.name}
+              fill
+              className={`object-contain ${logoClass(client.isWhite)}`}
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className="absolute top-0 py-12 animate-marquee2 whitespace-nowrap flex items-center">
+        {[...clients, ...clients].map((client, i) => (
+          <div key={i} className="mx-12 w-32 md:w-48 h-20 relative flex items-center justify-center flex-shrink-0">
+            <Image
+              src={client.logo}
+              alt={client.name}
+              fill
+              className={`object-contain ${logoClass(client.isWhite)}`}
+            />
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+const spotlightMask = {
+  maskImage: 'linear-gradient(to right, transparent 15%, black 35%, black 65%, transparent 85%)',
+  WebkitMaskImage: 'linear-gradient(to right, transparent 15%, black 35%, black 65%, transparent 85%)',
+};
+
 export default function Clients() {
   const mobile = useIsMobile();
 
@@ -62,35 +109,17 @@ export default function Clients() {
         </motion.p>
       </div>
 
-      <div className="relative flex overflow-x-hidden group">
-        <div className="py-12 animate-marquee whitespace-nowrap flex items-center">
-          {[...clients, ...clients].map((client, i) => (
-            <div key={i} className="mx-12 w-32 md:w-48 h-20 relative transition-all duration-500 opacity-60 hover:opacity-100 flex items-center justify-center group/logo">
-              <Image
-                src={client.logo}
-                alt={client.name}
-                fill
-                className={`object-contain transition-all duration-500
-                  ${client.isWhite ? 'dark:brightness-100 brightness-0' : 'brightness-0 dark:brightness-0 dark:invert'} 
-                  group-hover/logo:brightness-100 group-hover/logo:invert-0`}
-              />
-            </div>
-          ))}
+      <div className="relative overflow-x-hidden">
+        {/* Grayscale base layer */}
+        <div className="relative flex opacity-30">
+          <MarqueeStrip />
         </div>
 
-        <div className="absolute top-0 py-12 animate-marquee2 whitespace-nowrap flex items-center">
-          {[...clients, ...clients].map((client, i) => (
-            <div key={i} className="mx-12 w-32 md:w-48 h-20 relative transition-all duration-500 opacity-60 hover:opacity-100 flex items-center justify-center group/logo">
-              <Image
-                src={client.logo}
-                alt={client.name}
-                fill
-                className={`object-contain transition-all duration-500
-                  ${client.isWhite ? 'dark:brightness-100 brightness-0' : 'brightness-0 dark:brightness-0 dark:invert'} 
-                  group-hover/logo:brightness-100 group-hover/logo:invert-0`}
-              />
-            </div>
-          ))}
+        {/* Colored spotlight layer — masked to center */}
+        <div
+          className="absolute inset-0 flex pointer-events-none"
+          style={spotlightMask}>
+          <MarqueeStrip colored />
         </div>
       </div>
 
