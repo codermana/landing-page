@@ -4,52 +4,70 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useIsMobile, fadeUp } from "../hooks/useReducedMotion";
 
-const clients = [
-  { name: "Amdocs", logo: "/clients/amdocs.svg" },
-  { name: "Autodesk", logo: "/clients/autodesk.svg", isWhite: true },
-  { name: "Brillio", logo: "/clients/brillio.svg", isWhite: true },
-  { name: "Cisco", logo: "/clients/cisco.svg" },
-  { name: "Compucom", logo: "/clients/compucom.svg" },
-  { name: "Ericsson", logo: "/clients/ericsson.svg" },
-  { name: "Flipkart", logo: "/clients/flipkart.svg" },
-  { name: "GE Healthcare", logo: "/clients/ge_healthcare.svg" },
-  { name: "Grab", logo: "/clients/grab.svg" },
-  { name: "Groupon", logo: "/clients/groupon.svg" },
-  { name: "HCL", logo: "/clients/hcl.svg" },
-  { name: "Intel", logo: "/clients/intel.svg", isWhite: true },
-  { name: "JP Morgan Chase", logo: "/clients/jpmc.svg" },
-  { name: "Mastercard", logo: "/clients/mastercard.svg" },
-  { name: "Medtronic", logo: "/clients/medtronic.svg" },
-  { name: "Natwest", logo: "/clients/natwest.svg", isWhite: true },
-  { name: "Nutanix", logo: "/clients/nutanix.svg" },
-  { name: "Oshi", logo: "/clients/oshi.svg" },
-  { name: "Paypal", logo: "/clients/paypal.svg" },
-  { name: "Proofpoint", logo: "/clients/proofpoint.svg", isWhite: true },
-  { name: "Qualcomm", logo: "/clients/qualcomm.svg" },
-  { name: "Renault Nissan Mitsubishi", logo: "/clients/renault-nissan-mitsubishi.svg" },
-  { name: "Roll", logo: "/clients/roll.svg" },
-  { name: "Salesforce", logo: "/clients/salesforce.svg" },
-  { name: "Samsung", logo: "/clients/samsung.svg" },
-  { name: "Skan.ai", logo: "/clients/skan.svg" },
-  { name: "Siemens", logo: "/clients/siemens.svg" },
-  { name: "Synamedia", logo: "/clients/synamedia.svg", isWhite: true },
-  { name: "Synchrony", logo: "/clients/synchrony.svg" },
-  { name: "TCS", logo: "/clients/tcs.svg", isWhite: true },
-  { name: "Toshiba", logo: "/clients/toshiba.svg" },
-  { name: "Trane", logo: "/clients/trane.svg" },
-  { name: "VMware", logo: "/clients/vmware.svg" },
-  { name: "Walmart", logo: "/clients/walmart.svg" },
-  { name: "Western Digital", logo: "/clients/western_digital.svg" },
+/**
+ * Logo theme classification based on SVG fill analysis:
+ * - "light": Logo uses white/light fills — needs brightness-0 on light backgrounds
+ * - "dark": Logo uses black/dark fills — needs invert on dark backgrounds
+ * - "colorful": Logo has enough contrast to be visible on both backgrounds
+ */
+type LogoTheme = "light" | "dark" | "colorful";
+
+const clients: { name: string; logo: string; theme: LogoTheme }[] = [
+  { name: "Amdocs", logo: "/clients/amdocs.svg", theme: "colorful" },
+  { name: "Autodesk", logo: "/clients/autodesk.svg", theme: "light" },
+  { name: "Brillio", logo: "/clients/brillio.svg", theme: "light" },
+  { name: "Cisco", logo: "/clients/cisco.svg", theme: "colorful" },
+  { name: "Compucom", logo: "/clients/compucom.svg", theme: "colorful" },
+  { name: "Ericsson", logo: "/clients/ericsson.svg", theme: "dark" },
+  { name: "Flipkart", logo: "/clients/flipkart.svg", theme: "light" },
+  { name: "GE Healthcare", logo: "/clients/ge_healthcare.svg", theme: "colorful" },
+  { name: "Grab", logo: "/clients/grab.svg", theme: "colorful" },
+  { name: "Groupon", logo: "/clients/groupon.svg", theme: "dark" },
+  { name: "HCL", logo: "/clients/hcl.svg", theme: "colorful" },
+  { name: "Intel", logo: "/clients/intel.svg", theme: "light" },
+  { name: "JP Morgan Chase", logo: "/clients/jpmc.svg", theme: "dark" },
+  { name: "Mastercard", logo: "/clients/mastercard.svg", theme: "colorful" },
+  { name: "Medtronic", logo: "/clients/medtronic.svg", theme: "dark" },
+  { name: "Natwest", logo: "/clients/natwest.svg", theme: "light" },
+  { name: "Nutanix", logo: "/clients/nutanix.svg", theme: "dark" },
+  { name: "Oshi", logo: "/clients/oshi.svg", theme: "dark" },
+  { name: "Paypal", logo: "/clients/paypal.svg", theme: "colorful" },
+  { name: "Proofpoint", logo: "/clients/proofpoint.svg", theme: "light" },
+  { name: "Qualcomm", logo: "/clients/qualcomm.svg", theme: "dark" },
+  { name: "Renault Nissan Mitsubishi", logo: "/clients/renault-nissan-mitsubishi.svg", theme: "dark" },
+  { name: "Roll", logo: "/clients/roll.svg", theme: "colorful" },
+  { name: "Salesforce", logo: "/clients/salesforce.svg", theme: "colorful" },
+  { name: "Samsung", logo: "/clients/samsung.svg", theme: "dark" },
+  { name: "Skan.ai", logo: "/clients/skan.svg", theme: "dark" },
+  { name: "Siemens", logo: "/clients/siemens.svg", theme: "colorful" },
+  { name: "Synamedia", logo: "/clients/synamedia.svg", theme: "light" },
+  { name: "Synchrony", logo: "/clients/synchrony.svg", theme: "colorful" },
+  { name: "TCS", logo: "/clients/tcs.svg", theme: "light" },
+  { name: "Toshiba", logo: "/clients/toshiba.svg", theme: "colorful" },
+  { name: "Trane", logo: "/clients/trane.svg", theme: "colorful" },
+  { name: "VMware", logo: "/clients/vmware.svg", theme: "dark" },
+  { name: "Walmart", logo: "/clients/walmart.svg", theme: "colorful" },
+  { name: "Western Digital", logo: "/clients/western_digital.svg", theme: "colorful" },
 ];
 
 /** Renders the two marquee strips (primary + seamless clone) */
 function MarqueeStrip({ colored = false }: { colored?: boolean }) {
-  const logoClass = (isWhite?: boolean) => {
+  const logoClass = (theme: LogoTheme) => {
     if (colored) {
-      // Full color — but isWhite logos still need brightness-0 on light bg
-      return isWhite ? 'brightness-0 dark:brightness-100' : '';
+      // Spotlight layer — show original brand colors with theme-aware fixes
+      switch (theme) {
+        case "light":
+          // White logos: darken on light bg so visible, show original on dark
+          return 'brightness-0 dark:brightness-100';
+        case "dark":
+          // Dark/black logos: show original on light, brighten on dark bg
+          return 'dark:brightness-0 dark:invert';
+        case "colorful":
+          // Colorful logos: visible on both backgrounds as-is
+          return '';
+      }
     }
-    // Grayscale base layer
+    // Grayscale base layer — monochrome on both themes
     return 'brightness-0 dark:invert';
   };
 
@@ -62,7 +80,7 @@ function MarqueeStrip({ colored = false }: { colored?: boolean }) {
               src={client.logo}
               alt={client.name}
               fill
-              className={`object-contain ${logoClass(client.isWhite)}`}
+              className={`object-contain ${logoClass(client.theme)}`}
             />
           </div>
         ))}
@@ -75,7 +93,7 @@ function MarqueeStrip({ colored = false }: { colored?: boolean }) {
               src={client.logo}
               alt={client.name}
               fill
-              className={`object-contain ${logoClass(client.isWhite)}`}
+              className={`object-contain ${logoClass(client.theme)}`}
             />
           </div>
         ))}
@@ -115,6 +133,14 @@ export default function Clients() {
           <MarqueeStrip />
         </div>
 
+        {/* Light backdrop behind spotlight in dark mode for logo visibility */}
+        <div
+          className="absolute inset-0 pointer-events-none hidden dark:block"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 45%)',
+          }}
+        />
+
         {/* Colored spotlight layer — masked to center */}
         <div
           className="absolute inset-0 flex pointer-events-none"
@@ -124,9 +150,9 @@ export default function Clients() {
       </div>
 
       <div className="mt-20 text-center">
-          <p className="text-gray-400 font-medium italic">
-            & 20+ more enterprises across finance, healthcare, technology, and manufacturing
-          </p>
+        <p className="text-gray-400 font-medium italic">
+          & 20+ more enterprises across finance, healthcare, technology, and manufacturing
+        </p>
       </div>
     </section>
   );
